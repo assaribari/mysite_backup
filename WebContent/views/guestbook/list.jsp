@@ -1,10 +1,13 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fn"%> 
 <%@page import="com.sds.icto.guestbook.dao.GuestBookDao"%>
 <%@page import="com.sds.icto.guestbook.vo.GuestBookVo"%>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.util.List"%>
 <% 
-	GuestBookDao dao = new GuestBookDao();
-	List<GuestBookVo> list = dao.fetchList();
+//	GuestBookDao dao = new GuestBookDao();
+//	List<GuestBookVo> list = dao.fetchList();
 %>
 <!doctype html>
 <html>
@@ -17,7 +20,7 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<jsp:include page="/views/include/header.jsp" flush="false" />
+		<c:import url="/views/include/header.jsp"></c:import>
 		</div>
 		<div id="content">
 			<div id="guestbook">
@@ -40,33 +43,34 @@
 				</form>
 				<ul>
 					<li>
-						<%
-							for (GuestBookVo vo : list) {
-						%> <br>
+				
+				<c:forEach items="${list }" var="vo" varStatus="status">
+						<br>
 						<table width=510 border=1>
 							<tr>
-								<td>[<%=vo.getNo()%>]
+								<td>[${vo.no}]
 								</td>
-								<td><%=vo.getName()%></td>
-								<td><%=vo.getSysdate()%></td>
+								<td>${vo.name}</td>
+								<td>${vo.sysdate}</td>
 								<td><a
-									href="/mysite/views/guestbook/deleteform.jsp?no=<%=vo.getNo()%>">삭제</a></td>
+									href="/mysite/views/guestbook/deleteform.jsp?no=${vo.no}">삭제</a></td>
 							</tr>
 							<tr>
-								<td colspan=4><%=vo.getMessage()%></td>
+								<td colspan=4>${vo.message}</td>
 							</tr>
-						</table> <%
- 	}
- %> <br>
+						</table> 
+				</c:forEach>
+ 						
+ 						<br>
 					</li>
 				</ul>
 			</div>
 		</div>
 		<div id="navigation">
-			<jsp:include page="/views/include/navigation.jsp" />
+			<c:import url="/views/include/navigation.jsp"></c:import>
 		</div>
 		<div id="footer">
-			<p>(c)opyright 2014</p>
+			<c:import url="/views/include/footer.jsp"></c:import>
 		</div>
 	</div>
 </body>
