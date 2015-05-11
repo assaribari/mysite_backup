@@ -1,7 +1,8 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="fn"%> 
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	String no = request.getParameter( "no" );
-%>
+
 <!doctype html>
 <html>
 <head>
@@ -12,13 +13,13 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<jsp:include page = "/views/include/header.jsp" flush="false"/>
+		<c:import url="/views/include/header.jsp"></c:import>
 		</div>
 		<div id="content">
 			<div id="guestbook" class="delete-form">
 				<form action="/mysite/gb?a=delete" method="post">
 					<input type="hidden" name="a" value="delete"> <input
-						type='hidden' name="no" value=<%=no%>>
+						type='hidden' name="no" value=${ param.no}>
 					<table>
 						<tr>
 							<td>비밀번호</td>
@@ -32,10 +33,10 @@
 			</div>
 		</div>
 		<div id="navigation">
-			<jsp:include page = "/views/include/navigation.jsp" flush = "false"/>
+			<c:import url="/views/include/navigation.jsp"></c:import>
 		</div>
 		<div id="footer">
-			<jsp:include page = "/views/include/footer.jsp" flush = "false"/>
+			<c:import url="/views/include/footer.jsp"></c:import>
 		</div>
 	</div>
 </body>

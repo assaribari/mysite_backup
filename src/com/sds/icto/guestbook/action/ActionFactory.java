@@ -2,7 +2,6 @@ package com.sds.icto.guestbook.action;
 
 import com.sds.icto.guestbook.action.AddAction;
 import com.sds.icto.guestbook.action.DeleteAction;
-import com.sds.icto.mysite.servlet.action.main.IndexAction;
 import com.sds.icto.web.Action;
 
 public class ActionFactory {
