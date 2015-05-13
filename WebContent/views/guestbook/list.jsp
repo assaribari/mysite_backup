@@ -6,8 +6,8 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ page import="java.util.List"%>
 <% 
-//	GuestBookDao dao = new GuestBookDao();
-//	List<GuestBookVo> list = dao.fetchList();
+	GuestBookDao dao = new GuestBookDao();
+	List<GuestBookVo> list = dao.fetchList();
 %>
 <!doctype html>
 <html>
@@ -43,25 +43,25 @@
 				</form>
 				<ul>
 					<li>
-				
-				<c:forEach items="${list }" var="vo" varStatus="status">
-						<br>
+					<%
+						for (GuestBookVo vo : list) {
+					%> <br>
 						<table width=510 border=1>
 							<tr>
-								<td>[${vo.no}]
+								<td>[<%=vo.getNo()%>]
 								</td>
-								<td>${vo.name}</td>
-								<td>${vo.sysdate}</td>
+								<td><%=vo.getName()%></td>
+								<td><%=vo.getSysdate()%></td>
 								<td><a
-									href="/mysite/views/guestbook/deleteform.jsp?no=${vo.no}">삭제</a></td>
+									href="/mysite/views/guestbook/deleteform.jsp?no=<%=vo.getNo()%>">삭제</a></td>
 							</tr>
 							<tr>
-								<td colspan=4>${vo.message}</td>
+								<td colspan=4><%=vo.getMessage()%></td>
 							</tr>
 						</table> 
-				</c:forEach>
- 						
- 						<br>
+						<%
+ 						}
+ 						%> <br>
 					</li>
 				</ul>
 			</div>
